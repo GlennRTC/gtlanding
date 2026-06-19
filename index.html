@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glenn Tomassi — Saxophonist · Composer · Educator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:        #0A0A0F;
+    --bg2:       #0F0F18;
+    --bg3:       #141420;
+    --gold:      #C9A84C;
+    --gold-dim:  #8A6E2F;
+    --gold-glow: rgba(201,168,76,0.12);
+    --cream:     #F0EBE0;
+    --cream-dim: #A09080;
+    --divider:   #2A2A3A;
+    --ff-display: 'Playfair Display', Georgia, serif;
+    --ff-body:    'Inter', sans-serif;
+    --ff-mono:    'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: var(--ff-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: linear-gradient(to bottom, rgba(10,10,15,0.95) 0%, transparent 100%);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    transition: background 0.4s;
+  }
+  .nav-logo {
+    font-family: var(--ff-display);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%; left: -0.03em;
+    transform: translateY(-50%);
+    font-family: var(--ff-display);
+    font-size: clamp(18vw, 28vw, 36vw);
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(201,168,76,0.06);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--ff-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.2s forwards;
+  }
+
+  h1.hero-name {
+    font-family: var(--ff-display);
+    font-size: clamp(3.2rem, 8vw, 8rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    max-width: 14ch;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s forwards;
+  }
+  h1.hero-name em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-tagline {
+    margin-top: 2rem;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
+    font-weight: 300;
+    color: var(--cream-dim);
+    max-width: 42ch;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+    line-height: 1.5;
+  }
+
+  .hero-ctas {
+    margin-top: 3rem;
+    display: flex; gap: 1.25rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2.25rem;
+    background: var(--gold);
+    color: #0A0A0F;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: #dbb85a; transform: translateY(-2px); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.85rem 2.25rem;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--cream); transform: translateY(-2px); }
+
+  /* ── WAVE CANVAS (signature element) ── */
+  .wave-canvas-wrap {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 180px; pointer-events: none;
+  }
+  #waveCanvas { width: 100%; height: 100%; display: block; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--bg3);
+    border-top: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    padding: 2rem 4rem;
+    display: flex; gap: 0; justify-content: center;
+  }
+  .stat-item {
+    flex: 1; max-width: 220px;
+    text-align: center;
+    padding: 0 2rem;
+    border-right: 1px solid var(--divider);
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item.visible { opacity: 1; transform: none; }
+  .stat-num {
+    display: block;
+    font-family: var(--ff-display);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-dim);
+    margin-top: 0.4rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 4rem; }
+  section:nth-child(even) { background: var(--bg2); }
+
+  .section-eyebrow {
+    font-family: var(--ff-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-eyebrow::after {
+    content: ''; flex: 0 0 40px; height: 1px; background: var(--gold-dim);
+  }
+
+  h2.section-title {
+    font-family: var(--ff-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--cream);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--cream-dim);
+    max-width: 60ch;
+    margin-bottom: 3.5rem;
+  }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.75s, transform 0.75s; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── BIOGRAPHY ── */
+  #biography .bio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .bio-text p {
+    color: var(--cream-dim);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    font-size: 1rem;
+  }
+  .bio-text p strong { color: var(--cream); font-weight: 500; }
+  .bio-quote {
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    background: var(--gold-glow);
+    margin-top: 2rem;
+  }
+  .bio-quote blockquote {
+    font-family: var(--ff-display);
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    color: var(--cream);
+  }
+  .bio-quote cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* Timeline */
+  .bio-timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 1.5rem;
+    padding-bottom: 2rem;
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 80px; top: 6px; bottom: 0;
+    width: 1px; background: var(--divider);
+  }
+  .tl-item:last-child::before { display: none; }
+  .tl-year {
+    font-family: var(--ff-mono);
+    font-size: 0.78rem;
+    color: var(--gold);
+    padding-top: 2px;
+    text-align: right;
+  }
+  .tl-dot {
+    position: absolute;
+    left: calc(80px + 1.5rem / 2 - 4px);
+    top: 5px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    left: 75px;
+  }
+  .tl-content { padding-left: 1rem; }
+  .tl-content strong {
+    display: block;
+    color: var(--cream);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .tl-content span {
+    color: var(--cream-dim);
+    font-size: 0.82rem;
+  }
+
+  /* ── COLLABORATORS ── */
+  #collaborators .collab-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--divider);
+    margin-top: 1rem;
+  }
+  .collab-group {
+    background: var(--bg);
+    padding: 2rem 2.5rem;
+  }
+  #collaborators section:nth-child(even) .collab-group { background: var(--bg2); }
+  .collab-group-label {
+    font-family: var(--ff-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1.2rem;
+  }
+  .collab-names {
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .collab-name {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--cream);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: color 0.2s, padding-left 0.2s;
+    cursor: default;
+  }
+  .collab-name:hover { color: var(--gold); padding-left: 6px; }
+
+  /* ── DISCOGRAPHY ── */
+  #discography .disc-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--divider);
+  }
+  .disc-item {
+    background: var(--bg);
+    padding: 1.2rem 1.6rem;
+    display: flex; align-items: baseline; gap: 1rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .disc-item:hover { background: var(--bg3); }
+  .disc-year {
+    font-family: var(--ff-mono);
+    font-size: 0.7rem;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    width: 36px;
+  }
+  .disc-info { flex: 1; }
+  .disc-artist { font-size: 0.88rem; color: var(--cream); font-weight: 500; }
+  .disc-album { font-size: 0.78rem; color: var(--cream-dim); margin-top: 0.1rem; font-style: italic; }
+
+  /* ── TEACHING ── */
+  #teaching .teach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .teach-card {
+    background: var(--bg3);
+    border: 1px solid var(--divider);
+    border-top: 3px solid var(--gold);
+    padding: 2.5rem;
+    transition: border-color 0.25s, transform 0.25s;
+  }
+  .teach-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .teach-card h3 {
+    font-family: var(--ff-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+  .teach-card .inst {
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-family: var(--ff-mono);
+  }
+  .teach-card p { font-size: 0.9rem; color: var(--cream-dim); font-weight: 300; }
+
+  .instruments-cloud {
+    margin-top: 3.5rem;
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  }
+  .instr-tag {
+    padding: 0.45rem 1.1rem;
+    border: 1px solid var(--divider);
+    font-size: 0.78rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.06em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .instr-tag:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+  /* ── ENSEMBLES ── */
+  #ensembles .ensemble-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .ensemble-card {
+    position: relative;
+    padding: 2.5rem 2rem 2rem;
+    background: var(--bg3);
+    overflow: hidden;
+  }
+  .ensemble-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .ensemble-icon {
+    font-size: 2.5rem; margin-bottom: 1.2rem; display: block;
+  }
+  .ensemble-card h3 {
+    font-family: var(--ff-display);
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 0.25rem;
+  }
+  .ensemble-role {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-family: var(--ff-mono);
+    margin-bottom: 1rem;
+  }
+  .ensemble-card p { font-size: 0.88rem; color: var(--cream-dim); font-weight: 300; }
+
+  /* ── ENDORSEMENT ── */
+  #endorsement {
+    background: linear-gradient(135deg, #0A0A0F 0%, #0F0F1A 50%, #0A0A0F 100%);
+    text-align: center;
+    padding: 6rem 4rem;
+  }
+  .endorse-inner { max-width: 680px; margin: 0 auto; }
+  .endorse-brand {
+    font-family: var(--ff-display);
+    font-size: 4rem; font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--gold-dim);
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .endorse-desc { color: var(--cream-dim); font-size: 1rem; font-weight: 300; max-width: 45ch; margin: 0 auto; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+    padding: 7rem 4rem;
+  }
+  .contact-inner { max-width: 640px; margin: 0 auto; }
+  .contact-links {
+    margin-top: 2.5rem;
+    display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+  }
+  .contact-link {
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    text-decoration: none;
+    padding: 1.5rem 2rem;
+    border: 1px solid var(--divider);
+    transition: border-color 0.2s, background 0.2s;
+    min-width: 140px;
+  }
+  .contact-link:hover { border-color: var(--gold-dim); background: var(--gold-glow); }
+  .contact-link-icon { font-size: 1.4rem; }
+  .contact-link-label {
+    font-size: 0.68rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--cream-dim);
+  }
+  .contact-link-val {
+    font-size: 0.88rem; color: var(--cream); font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bg3);
+    border-top: 1px solid var(--divider);
+    padding: 2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-name {
+    font-family: var(--ff-display);
+    font-size: 0.9rem; color: var(--cream-dim);
+  }
+  .footer-refs {
+    display: flex; gap: 2rem;
+  }
+  .footer-refs a {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--cream-dim); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-refs a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ── GOLD DIVIDER ── */
+  .gold-divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold-dim) 30%, var(--gold) 50%, var(--gold-dim) 70%, transparent 100%);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .stats-bar { padding: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--divider); padding: 1rem; }
+    #biography .bio-grid { grid-template-columns: 1fr; }
+    .collab-grid { grid-template-columns: 1fr !important; }
+    #teaching .teach-grid { grid-template-columns: 1fr; }
+    #ensembles .ensemble-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .footer-refs { flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Glenn Tomassi</a>
+  <ul class="nav-links">
+    <li><a href="#biography">Biography</a></li>
+    <li><a href="#collaborators">Collaborators</a></li>
+    <li><a href="#discography">Discography</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-text" aria-hidden="true">SAX</div>
+  <p class="hero-eyebrow">Caracas · New York · The World</p>
+  <h1 class="hero-name">Glenn <em>Tomassi</em></h1>
+  <p class="hero-tagline">Saxophonist. Composer. Arranger. Educator.<br>Four decades at the intersection of jazz, Latin music, and the world stage.</p>
+  <div class="hero-ctas">
+    <a href="#biography" class="btn-primary">Discover His Story</a>
+    <a href="#contact" class="btn-ghost">Book a Lesson</a>
+  </div>
+  <div class="wave-canvas-wrap" aria-hidden="true">
+    <canvas id="waveCanvas"></canvas>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">40+</span><span class="stat-label">Years Performing</span></div>
+  <div class="stat-item"><span class="stat-num">30+</span><span class="stat-label">Studio Recordings</span></div>
+  <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">Graduate Degrees</span></div>
+  <div class="stat-item"><span class="stat-num">3</span><span class="stat-label">Continents</span></div>
+  <div class="stat-item"><span class="stat-num">∞</span><span class="stat-label">Students Shaped</span></div>
+</div>
+
+<!-- BIOGRAPHY -->
+<section id="biography">
+  <p class="section-eyebrow reveal">The Artist</p>
+  <h2 class="section-title reveal">A Life Lived in Music</h2>
+  <div class="bio-grid reveal">
+    <div class="bio-text">
+      <p>Born in <strong>Caracas, Venezuela</strong>, Glenn Humberto Tomassi began his musical formation at the <strong>Conservatorio José Ángel Lamas</strong> in 1972. His exceptional talent earned him a New York State half-scholarship to the <strong>LaGuardia High School of Music & Art and Performing Arts</strong> — the city's most prestigious public arts institution — where he studied under the legendary <strong>Joseph Allard</strong>.</p>
+      <p>A Venezuelan government scholarship then took him to <strong>Berklee College of Music</strong> in Boston, where he completed his <strong>Bachelor of Music</strong> (1984) under Joseph Viola, followed by a <strong>Master of Music in Jazz Studies</strong> at the <strong>Manhattan School of Music</strong> (1986), returning to Joseph Allard's tutelage at the graduate level.</p>
+      <p>Over four decades, Tomassi built a career that defies simple categories: a studio musician who appeared on <strong>30+ commercial recordings</strong>; a live performer who shared the stage with Ella Fitzgerald, Dizzy Gillespie, and Barbra Streisand; and an educator whose students now populate professional orchestras and international conservatories. A <strong>Yamaha artist endorsee</strong> in Venezuela, he served as <strong>Dean of Instrumental Music</strong> at the Colegio Internacional de Caracas for two decades, shaping a generation of Latin American woodwind artists.</p>
+      <div class="bio-quote">
+        <blockquote>"I work with each artist in an easy, relaxed manner — developing their full potential, taking into account their musical interests and tailoring the curriculum to their needs."</blockquote>
+        <cite>— Glenn Tomassi, Teaching Philosophy</cite>
+      </div>
+    </div>
+    <div>
+      <div class="bio-timeline">
+        <div class="tl-item">
+          <span class="tl-year">1972</span>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><strong>Conservatorio José Ángel Lamas</strong><span>Caracas — Theory, solfège & choir</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">1978</span>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><strong>LaGuardia High School of Music & Art</strong><span>New York — NY State Scholarship</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">1984</span>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><strong>B.M. — Berklee College of Music</strong><span>Boston — Instrumental Performance</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">1986</span>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><strong>M.M. — Manhattan School of Music</strong><span>New York — Jazz Studies</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">1990s</span>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><strong>Dean, Colegio Internacional de Caracas</strong><span>IB DP/MYP instrumental music dept.</span></div>
+        </div>
+        <div class="tl-item">
+          <span class="tl-year">Now</span>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><strong>Music & Arts — Stony Brook, NY</strong><span>Master-level woodwind instructor</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- COLLABORATORS -->
+<section id="collaborators">
+  <p class="section-eyebrow reveal">Shared Stages</p>
+  <h2 class="section-title reveal">The Company He Keeps</h2>
+  <p class="section-lead reveal">From Ella Fitzgerald's dressing room to the Orquesta Sinfónica Simón Bolívar — a career built alongside the icons.</p>
+  <div class="collab-grid reveal">
+    <div class="collab-group">
+      <p class="collab-group-label">Jazz & Concert — United States</p>
+      <div class="collab-names">
+        <span class="collab-name">Ella Fitzgerald</span>
+        <span class="collab-name">Dizzy Gillespie</span>
+        <span class="collab-name">Lionel Hampton</span>
+        <span class="collab-name">Barbra Streisand</span>
+        <span class="collab-name">George Russell Big Band</span>
+        <span class="collab-name">Miroslav Vitous</span>
+        <span class="collab-name">Phil Wilson Dues Band</span>
+        <span class="collab-name">Ted Shumate</span>
+      </div>
+    </div>
+    <div class="collab-group">
+      <p class="collab-group-label">Venezuela & Latin America</p>
+      <div class="collab-names">
+        <span class="collab-name">Oscar D'León</span>
+        <span class="collab-name">Ricardo Montaner</span>
+        <span class="collab-name">Franco de Vita</span>
+        <span class="collab-name">Guillermo Dávila</span>
+        <span class="collab-name">Yordano Di Marzo</span>
+        <span class="collab-name">Ilan Chester</span>
+        <span class="collab-name">Kiara</span>
+        <span class="collab-name">Mirla Castellanos</span>
+        <span class="collab-name">Frank Quintero</span>
+        <span class="collab-name">Biella Da Costa</span>
+      </div>
+    </div>
+    <div class="collab-group">
+      <p class="collab-group-label">International Artists</p>
+      <div class="collab-names">
+        <span class="collab-name">Rubén Blades</span>
+        <span class="collab-name">Armando Manzanero</span>
+        <span class="collab-name">Cheo Feliciano</span>
+        <span class="collab-name">Andy Montañez</span>
+        <span class="collab-name">José José</span>
+        <span class="collab-name">Rocío Dúrcal</span>
+        <span class="collab-name">Emmanuel</span>
+        <span class="collab-name">Nelson Pinedo</span>
+        <span class="collab-name">Camilo Blanes</span>
+        <span class="collab-name">Orquesta Sinfónica Simón Bolívar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- DISCOGRAPHY -->
+<section id="discography">
+  <p class="section-eyebrow reveal">Studio Work</p>
+  <h2 class="section-title reveal">Discography</h2>
+  <p class="section-lead reveal">Saxophone on 30+ commercially released recordings across jazz, Latin pop, and world music — from Caracas to the world.</p>
+  <div class="disc-list reveal">
+    <div class="disc-item"><span class="disc-year">1987</span><div class="disc-info"><div class="disc-artist">José Antonio Bordell</div><div class="disc-album">Entre Cenizas</div></div></div>
+    <div class="disc-item"><span class="disc-year">1988</span><div class="disc-info"><div class="disc-artist">Antonietta</div><div class="disc-album">Antonietta</div></div></div>
+    <div class="disc-item"><span class="disc-year">1988</span><div class="disc-info"><div class="disc-artist">Guillermo Dávila</div><div class="disc-album">Guillermo Dávila 5</div></div></div>
+    <div class="disc-item"><span class="disc-year">1988</span><div class="disc-info"><div class="disc-artist">Ricardo Montaner</div><div class="disc-album">Ricardo Montaner 2</div></div></div>
+    <div class="disc-item"><span class="disc-year">1988</span><div class="disc-info"><div class="disc-artist">Mirla Castellanos</div><div class="disc-album">Amo Este Amor</div></div></div>
+    <div class="disc-item"><span class="disc-year">1989</span><div class="disc-info"><div class="disc-artist">Karina</div><div class="disc-album">Desde Mi Sueño</div></div></div>
+    <div class="disc-item"><span class="disc-year">1990</span><div class="disc-info"><div class="disc-artist">Franco De Vita</div><div class="disc-album">Extranjero</div></div></div>
+    <div class="disc-item"><span class="disc-year">1990</span><div class="disc-info"><div class="disc-artist">Yordano Di Marzo</div><div class="disc-album">Finales de Siglo</div></div></div>
+    <div class="disc-item"><span class="disc-year">1990</span><div class="disc-info"><div class="disc-artist">Aditus</div><div class="disc-album">Otro Mundo</div></div></div>
+    <div class="disc-item"><span class="disc-year">1992</span><div class="disc-info"><div class="disc-artist">Franco De Vita</div><div class="disc-album">En Vivo – Marzo 16</div></div></div>
+    <div class="disc-item"><span class="disc-year">1993</span><div class="disc-info"><div class="disc-artist">Chiqui Rojas</div><div class="disc-album">Sin Fronteras</div></div></div>
+    <div class="disc-item"><span class="disc-year">1995</span><div class="disc-info"><div class="disc-artist">María Fernanda Márquez</div><div class="disc-album">De Uno y Otro Lado</div></div></div>
+    <div class="disc-item"><span class="disc-year">1996</span><div class="disc-info"><div class="disc-artist">Andy Durán</div><div class="disc-album">Timeless Vol. 1</div></div></div>
+    <div class="disc-item"><span class="disc-year">1996</span><div class="disc-info"><div class="disc-artist">Ramón Carranza</div><div class="disc-album">Carranza Jazz</div></div></div>
+    <div class="disc-item"><span class="disc-year">1997</span><div class="disc-info"><div class="disc-artist">Various Artists</div><div class="disc-album">Jazz desde Aldemaro</div></div></div>
+    <div class="disc-item"><span class="disc-year">2000</span><div class="disc-info"><div class="disc-artist">Gerardo Chacón</div><div class="disc-album">Espacial</div></div></div>
+    <div class="disc-item"><span class="disc-year">2000</span><div class="disc-info"><div class="disc-artist">Saxomania</div><div class="disc-album">El Nazareno</div></div></div>
+    <div class="disc-item"><span class="disc-year">2004</span><div class="disc-info"><div class="disc-artist">Saxomania</div><div class="disc-album">Marejada Feliz</div></div></div>
+    <div class="disc-item"><span class="disc-year">2009</span><div class="disc-info"><div class="disc-artist">Caracas Soul Connection</div><div class="disc-album">Canciones del Alma</div></div></div>
+    <div class="disc-item"><span class="disc-year">2011</span><div class="disc-info"><div class="disc-artist">Rubén García</div><div class="disc-album">Wayne Shorter a la Vzlna</div></div></div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- TEACHING -->
+<section id="teaching">
+  <p class="section-eyebrow reveal">Education</p>
+  <h2 class="section-title reveal">The Teacher</h2>
+  <p class="section-lead reveal">Master-level instruction rooted in conservatory tradition, shaped by a career on the world's stages.</p>
+  <div class="teach-grid reveal">
+    <div class="teach-card">
+      <h3>Music & Arts — Stony Brook</h3>
+      <p class="inst">Nesconset, NY · Present</p>
+      <p>Individual and small-group woodwind instruction from beginner through pre-conservatory level. Curriculum tailored to audition targets, ensemble readiness, and each student's unique development arc.</p>
+    </div>
+    <div class="teach-card">
+      <h3>Colegio Internacional de Caracas</h3>
+      <p class="inst">Dean of Instrumental Music · 1990s–2010s</p>
+      <p>Led the instrumental music department under IB DP/MYP frameworks. Curriculum design, ensemble programming, faculty coordination. Graduates advanced to professional careers and conservatories worldwide.</p>
+    </div>
+    <div class="teach-card">
+      <h3>Conservatory Emil Friedman</h3>
+      <p class="inst">Woodwind Faculty · 15+ Years</p>
+      <p>Conservatory-level private instruction — saxophone, clarinet, flute, oboe, and bassoon. Emphasis on fundamentals, ear training, sight-reading, improvisation, and competition preparation.</p>
+    </div>
+    <div class="teach-card">
+      <h3>Escuela Campo Alegre</h3>
+      <p class="inst">Woodwind Faculty · International School</p>
+      <p>Comprehensive woodwind instruction in an international school setting. Individual coaching and ensemble preparation for school, regional, and national music programs.</p>
+    </div>
+  </div>
+
+  <div class="instruments-cloud reveal">
+    <span class="instr-tag">Saxophone — All Voices</span>
+    <span class="instr-tag">Clarinet</span>
+    <span class="instr-tag">Bass Clarinet</span>
+    <span class="instr-tag">Flute</span>
+    <span class="instr-tag">Piccolo</span>
+    <span class="instr-tag">Oboe</span>
+    <span class="instr-tag">Bassoon</span>
+    <span class="instr-tag">Music Theory</span>
+    <span class="instr-tag">Jazz Improvisation</span>
+    <span class="instr-tag">Ear Training</span>
+    <span class="instr-tag">Sight-Reading</span>
+    <span class="instr-tag">Audition Preparation</span>
+    <span class="instr-tag">Performance Coaching</span>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<!-- ENSEMBLES -->
+<section id="ensembles">
+  <p class="section-eyebrow reveal">Ensembles</p>
+  <h2 class="section-title reveal">His Own Voice</h2>
+  <p class="section-lead reveal">Beyond the sideman — the groups he leads, founds, and directs.</p>
+  <div class="ensemble-grid reveal">
+    <div class="ensemble-card">
+      <span class="ensemble-icon">🎷</span>
+      <h3>Glenn Tomassi Jazz Project</h3>
+      <p class="ensemble-role">Director & Lead Saxophonist · Ongoing</p>
+      <p>Original jazz ensemble performing Venezuelan and Latin jazz repertoire on national and international stages. The creative center of his artistic voice as a composer and bandleader.</p>
+    </div>
+    <div class="ensemble-card">
+      <span class="ensemble-icon">🎼</span>
+      <h3>"Nuevo Mundo" Saxophone Quartet</h3>
+      <p class="ensemble-role">Founder & Director · Ongoing</p>
+      <p>Classical and contemporary saxophone quartet bridging Venezuelan musical identity with international chamber repertoire — a mission to give Latin America a seat in the classical canon.</p>
+    </div>
+    <div class="ensemble-card">
+      <span class="ensemble-icon">🌎</span>
+      <h3>Saxomania Latin Jazz Band</h3>
+      <p class="ensemble-role">Member · 2000–2004</p>
+      <p>Contributed as saxophonist to <em>El Nazareno</em> (2000) and <em>Marejada Feliz</em> (2004) — two celebrated recordings in the Venezuelan Latin jazz canon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENDORSEMENT -->
+<section id="endorsement">
+  <div class="endorse-inner reveal">
+    <p class="section-eyebrow" style="justify-content:center;">Artist Endorsement</p>
+    <span class="endorse-brand">YAMAHA</span>
+    <p class="endorse-desc">Official Yamaha artist representative for Venezuela — selected on the strength of his performance profile and educational reach across Latin America.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <p class="section-eyebrow reveal" style="justify-content:center;">Get in Touch</p>
+    <h2 class="section-title reveal" style="text-align:center;">Book a Lesson.<br>Book a Performance.</h2>
+    <p class="section-lead reveal" style="text-align:center; margin:0 auto 0;">Whether you're looking for a master-level woodwind instructor or a seasoned performer for your next project, Glenn is available.</p>
+    <div class="contact-links reveal">
+      <a href="tel:6313610862" class="contact-link">
+        <span class="contact-link-icon">📞</span>
+        <span class="contact-link-label">Phone</span>
+        <span class="contact-link-val">(631) 361-0862</span>
+      </a>
+      <a href="mailto:glenn.tomassi57@gmail.com" class="contact-link">
+        <span class="contact-link-icon">✉️</span>
+        <span class="contact-link-label">Email</span>
+        <span class="contact-link-val">glenn.tomassi57@gmail.com</span>
+      </a>
+      <a href="https://stores.musicarts.com/instructors/glenn-tomassi" target="_blank" class="contact-link">
+        <span class="contact-link-icon">🎵</span>
+        <span class="contact-link-label">Music & Arts</span>
+        <span class="contact-link-val">Book a Lesson</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Glenn Humberto Tomassi · Nesconset, NY</span>
+  <div class="footer-refs">
+    <a href="https://es.wikipedia.org/wiki/Glenn_Tomassi" target="_blank">Wikipedia</a>
+    <a href="https://sincopa.com/musicians/sax/glenn_tomassi.htm" target="_blank">Sincopa</a>
+    <a href="https://stores.musicarts.com/instructors/glenn-tomassi" target="_blank">Music & Arts</a>
+  </div>
+</footer>
+
+<script>
+// ── WAVE CANVAS (signature element) ──────────────────────────
+(function() {
+  const canvas = document.getElementById('waveCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, raf;
+  let t = 0;
+
+  // 7 sine waves with different frequencies, amplitudes, phases, speeds
+  // evocative of the harmonic overtone series of a saxophone
+  const waves = [
+    { freq: 0.008, amp: 32, phase: 0,    speed: 0.018, color: 'rgba(201,168,76,0.55)', lw: 1.5 },
+    { freq: 0.012, amp: 20, phase: 1.2,  speed: 0.024, color: 'rgba(201,168,76,0.30)', lw: 1 },
+    { freq: 0.005, amp: 48, phase: 2.5,  speed: 0.012, color: 'rgba(201,168,76,0.18)', lw: 2 },
+    { freq: 0.020, amp: 12, phase: 0.8,  speed: 0.030, color: 'rgba(201,168,76,0.15)', lw: 0.8 },
+    { freq: 0.006, amp: 28, phase: 3.8,  speed: 0.015, color: 'rgba(240,235,224,0.08)', lw: 1.2 },
+    { freq: 0.015, amp:  8, phase: 5.1,  speed: 0.040, color: 'rgba(201,168,76,0.10)', lw: 0.6 },
+    { freq: 0.003, amp: 60, phase: 1.9,  speed: 0.008, color: 'rgba(201,168,76,0.06)', lw: 2.5 },
+  ];
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function drawWave(w) {
+    ctx.beginPath();
+    ctx.strokeStyle = w.color;
+    ctx.lineWidth = w.lw;
+    const mid = H * 0.5;
+    for (let x = 0; x <= W; x += 2) {
+      const y = mid + Math.sin(x * w.freq + w.phase + t * w.speed) * w.amp;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // fade to transparent at top
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, 'rgba(10,10,15,0)');
+    grad.addColorStop(0.4, 'rgba(10,10,15,0)');
+    grad.addColorStop(1, 'rgba(10,10,15,0.9)');
+    waves.forEach(drawWave);
+    // overlay gradient to blend into bg
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+    t++;
+    raf = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────
+(function() {
+  const els = document.querySelectorAll('.reveal');
+  const stats = document.querySelectorAll('.stat-item');
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  els.forEach(el => io.observe(el));
+
+  // staggered stats
+  const sio = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        stats.forEach((s, i) => setTimeout(() => s.classList.add('visible'), i * 120));
+        sio.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  if (stats.length) sio.observe(stats[0].parentElement);
+})();
+
+// ── SMOOTH NAV SCROLL ─────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
