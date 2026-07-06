@@ -4,6 +4,44 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glenn Tomassi — Saxophonist · Composer · Educator</title>
+<meta name="description" content="Glenn Tomassi — jazz saxophonist, composer, and master-level woodwind educator. 40+ years performing with Ella Fitzgerald, Dizzy Gillespie, and Latin music icons. Saxophone, clarinet & flute lessons in Stony Brook / Nesconset, NY.">
+<meta name="author" content="Glenn Tomassi">
+<meta name="theme-color" content="#0A0A0F">
+<!-- TODO: replace glenntomassi.netlify.app below (3 places) with the site's real URL -->
+<link rel="canonical" href="https://glenntomassi.netlify.app/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎷</text></svg>">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Glenn Tomassi — Saxophonist · Composer · Educator">
+<meta property="og:description" content="Jazz saxophonist, composer, and master-level woodwind educator. 40+ years on stage with Ella Fitzgerald, Dizzy Gillespie, and Latin music icons.">
+<meta property="og:url" content="https://glenntomassi.netlify.app/">
+<meta property="og:image" content="https://glenntomassi.netlify.app/glenn.jpg"><!-- TODO: add glenn.jpg (1200×630 recommended) to the repo -->
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Glenn Tomassi",
+  "alternateName": "Glenn Humberto Tomassi",
+  "jobTitle": "Saxophonist, Composer, Music Educator",
+  "description": "Jazz saxophonist, composer, arranger, and woodwind educator with 40+ years of international performing and teaching experience.",
+  "url": "https://glenntomassi.netlify.app/",
+  "image": "https://glenntomassi.netlify.app/glenn.jpg",
+  "email": "mailto:glenn.tomassi57@gmail.com",
+  "telephone": "+1-631-361-0862",
+  "address": { "@type": "PostalAddress", "addressLocality": "Nesconset", "addressRegion": "NY", "addressCountry": "US" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Berklee College of Music" },
+    { "@type": "CollegeOrUniversity", "name": "Manhattan School of Music" }
+  ],
+  "knowsAbout": ["Jazz", "Saxophone", "Latin Jazz", "Woodwinds", "Music Education"],
+  "sameAs": [
+    "https://es.wikipedia.org/wiki/Glenn_Tomassi",
+    "https://sincopa.com/musicians/sax/glenn_tomassi.htm",
+    "https://stores.musicarts.com/instructors/glenn-tomassi",
+    "https://open.spotify.com/artist/0CnN4AZUvCUHuE4usZ0mND"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -25,7 +63,7 @@
     --ff-mono:    'DM Mono', monospace;
   }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 
   body {
     background: var(--bg);
@@ -114,7 +152,7 @@
     top: 50%; left: -0.03em;
     transform: translateY(-50%);
     font-family: var(--ff-display);
-    font-size: clamp(18vw, 28vw, 36vw);
+    font-size: 28vw;
     font-weight: 900;
     color: transparent;
     -webkit-text-stroke: 1px rgba(201,168,76,0.05);
@@ -359,12 +397,11 @@
   }
   .tl-dot {
     position: absolute;
-    left: calc(80px + 1.5rem / 2 - 4px);
+    left: 75px;
     top: 5px;
     width: 8px; height: 8px;
     border-radius: 50%;
     background: var(--gold);
-    left: 75px;
   }
   .tl-content { padding-left: 1rem; }
   .tl-content strong {
@@ -390,7 +427,6 @@
     background: var(--bg);
     padding: 2rem 2.5rem;
   }
-  #collaborators section:nth-child(even) .collab-group { background: var(--bg2); }
   .collab-group-label {
     font-family: var(--ff-mono);
     font-size: 0.65rem;
@@ -606,29 +642,35 @@
     .nav-links { gap: 1.5rem; }
     section { padding: 5rem 1.5rem; }
 
-    /* hero stacks vertically on mobile */
+    /* single column on mobile; 3D column is skipped entirely (5 MB model) */
     #hero {
       grid-template-columns: 1fr;
-      grid-template-rows: auto 55vw;
       min-height: auto;
     }
     .hero-left {
-      padding: 7rem 1.5rem 2rem;
+      padding: 7rem 1.5rem 4rem;
       min-height: auto;
     }
-    .hero-right {
-      min-height: 55vw;
-    }
-    .hero-right::before { display: none; }
+    .hero-right { display: none; }
+    .hero-bg-text { font-size: 55vw; }
 
     .stats-bar { padding: 1.5rem; flex-wrap: wrap; gap: 1rem; }
-    .stat-item { border-right: none; border-bottom: 1px solid var(--divider); padding: 1rem; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--divider); padding: 1rem; max-width: none; flex: 1 1 40%; }
+    .stat-item:last-child { border-bottom: none; }
     #biography .bio-grid { grid-template-columns: 1fr; }
     .collab-grid { grid-template-columns: 1fr !important; }
     #teaching .teach-grid { grid-template-columns: 1fr; }
     #ensembles .ensemble-grid { grid-template-columns: 1fr; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
     .footer-refs { flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (max-width: 640px) {
+    nav { flex-direction: column; gap: 0.5rem; padding: 0.75rem 1rem; }
+    .nav-links { gap: 0.5rem 1.25rem; flex-wrap: wrap; justify-content: center; }
+    .hero-left { padding-top: 8.5rem; }
+    h1.hero-name { font-size: clamp(2.6rem, 12vw, 3.2rem); }
+    .btn-primary, .btn-ghost { width: 100%; text-align: center; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -692,76 +734,10 @@
   }
   .spotify-close:hover { color: var(--gold); }
 
-  /* track list */
-  .spotify-tracklist {
-    list-style: none;
-    border-bottom: 1px solid rgba(201,168,76,0.12);
-  }
-  .spotify-track {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.55rem 1rem;
-    cursor: pointer;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    transition: background 0.15s;
-  }
-  .spotify-track:last-child { border-bottom: none; }
-  .spotify-track:hover     { background: rgba(201,168,76,0.06); }
-  .spotify-track.active    { background: rgba(201,168,76,0.10); }
-  .track-num {
-    font-family: var(--ff-mono);
-    font-size: 0.58rem;
-    color: var(--gold-dim);
-    width: 18px;
-    flex-shrink: 0;
-  }
-  .spotify-track.active .track-num { color: var(--gold); }
-  .track-info { display: flex; flex-direction: column; gap: 0.1rem; overflow: hidden; }
-  .track-name {
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--cream-dim);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .track-artist {
-    font-size: 0.68rem;
-    color: var(--gold-dim);
-    font-family: var(--ff-mono);
-    letter-spacing: 0.05em;
-  }
-  .spotify-track.active .track-name { color: var(--cream); }
-  .spotify-track.active .track-artist { color: var(--gold); }
-  /* playing indicator */
-  .track-playing {
-    margin-left: auto;
-    display: none;
-    gap: 2px;
-    align-items: flex-end;
-    height: 14px;
-    flex-shrink: 0;
-  }
-  .spotify-track.active .track-playing { display: flex; }
-  .track-playing span {
-    display: block;
-    width: 3px;
-    background: var(--gold);
-    border-radius: 1px;
-    animation: equalizer 0.8s ease-in-out infinite alternate;
-  }
-  .track-playing span:nth-child(1) { height: 6px;  animation-delay: 0s; }
-  .track-playing span:nth-child(2) { height: 10px; animation-delay: 0.2s; }
-  .track-playing span:nth-child(3) { height: 7px;  animation-delay: 0.4s; }
-  @keyframes equalizer {
-    from { transform: scaleY(0.4); }
-    to   { transform: scaleY(1); }
-  }
-
   #spotify-panel iframe {
     display: block;
     border: none;
+    width: 100%;
   }
 
   #spotify-toggle {
@@ -797,6 +773,7 @@
   }
 </style>
 
+<!-- Required: CDN copies of GLTFLoader/RoomEnvironment import the bare specifier 'three' -->
 <script type="importmap">
 {
   "imports": {
@@ -864,7 +841,7 @@
   <div class="bio-grid reveal">
     <div class="bio-text">
       <p>Born in <strong>Caracas, Venezuela</strong>, Glenn Humberto Tomassi began his musical formation at the <strong>Conservatorio José Ángel Lamas</strong> in 1972. His exceptional talent earned him a New York State half-scholarship to the <strong>LaGuardia High School of Music & Art and Performing Arts</strong> — the city's most prestigious public arts institution — where he studied under the legendary <strong>Joseph Allard</strong>.</p>
-      <p>An scholarship then took him to <strong>Berklee College of Music</strong> in Boston, where he completed his <strong>Bachelor of Music</strong> (1984) under Joseph Viola, followed by a <strong>Master of Music in Jazz Studies</strong> at the <strong>Manhattan School of Music</strong> (1986), returning to Joseph Allard's tutelage at the graduate level.</p>
+      <p>A scholarship then took him to <strong>Berklee College of Music</strong> in Boston, where he completed his <strong>Bachelor of Music</strong> (1984) under Joseph Viola, followed by a <strong>Master of Music in Jazz Studies</strong> at the <strong>Manhattan School of Music</strong> (1986), returning to Joseph Allard's tutelage at the graduate level.</p>
       <p>Over four decades, Tomassi built a career that defies simple categories: a studio musician who appeared on <strong>30+ commercial recordings</strong>; a live performer who shared the stage with Ella Fitzgerald, Dizzy Gillespie, and Barbra Streisand; and an educator whose students now populate professional orchestras and international conservatories. A <strong>Yamaha artist endorsee</strong> in Venezuela, he served as <strong>Dean of Instrumental Music</strong> at the Colegio Internacional de Caracas for two decades, shaping a generation of Latin American woodwind artists.</p>
       <div class="bio-quote">
         <blockquote>"I work with each artist in an easy, relaxed manner — developing their full potential, taking into account their musical interests and tailoring the curriculum to their needs."</blockquote>
@@ -1085,7 +1062,7 @@
     <h2 class="section-title reveal" style="text-align:center;">Book a Lesson.<br>Book a Performance.</h2>
     <p class="section-lead reveal" style="text-align:center; margin:0 auto 0;">Whether you're looking for a master-level woodwind instructor or a seasoned performer for your next project, Glenn is available.</p>
     <div class="contact-links reveal">
-      <a href="tel:6313610862" class="contact-link">
+      <a href="tel:+16313610862" class="contact-link">
         <span class="contact-link-icon">📞</span>
         <span class="contact-link-label">Phone</span>
         <span class="contact-link-val">(631) 361-0862</span>
@@ -1108,43 +1085,19 @@
 <div id="spotify-widget">
   <div id="spotify-panel">
     <div class="spotify-header">
-      <span class="spotify-label">Playlist</span>
+      <span class="spotify-label">Glenn Tomassi on Spotify</span>
       <button class="spotify-close" id="spotify-close" aria-label="Close player">✕</button>
     </div>
-    <ul class="spotify-tracklist" id="spotify-tracklist">
-      <li class="spotify-track active" data-id="5dnwfkUVUUbxZXUjxOPbIs">
-        <span class="track-num">01</span>
-        <div class="track-info">
-          <span class="track-name">Featured Track I</span>
-          <span class="track-artist">Glenn Tomassi</span>
-        </div>
-        <span class="track-playing" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-      </li>
-      <li class="spotify-track" data-id="2S1y9uc7Ksyi1t7aIfbQ2V">
-        <span class="track-num">02</span>
-        <div class="track-info">
-          <span class="track-name">Featured Track II</span>
-          <span class="track-artist">Glenn Tomassi</span>
-        </div>
-        <span class="track-playing" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
-      </li>
-    </ul>
     <iframe
       id="spotify-iframe"
-      src=""
-      width="320"
-      height="152"
-      frameborder="0"
+      title="Glenn Tomassi on Spotify"
+      data-src="https://open.spotify.com/embed/artist/0CnN4AZUvCUHuE4usZ0mND?utm_source=generator&theme=0"
+      height="352"
       allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-      loading="lazy">
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
     </iframe>
   </div>
-  <button id="spotify-toggle" aria-label="Open music player">
+  <button id="spotify-toggle" aria-label="Open music player" aria-expanded="false">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.586 14.424a.623.623 0 01-.857.207c-2.348-1.435-5.304-1.76-8.785-.964a.623.623 0 01-.277-1.215c3.809-.87 7.076-.496 9.712 1.115a.623.623 0 01.207.857zm1.223-2.722a.78.78 0 01-1.072.257c-2.687-1.652-6.785-2.131-9.965-1.166a.78.78 0 01-.973-.519.781.781 0 01.52-.972c3.632-1.102 8.147-.568 11.233 1.328a.78.78 0 01.257 1.072zm.105-2.835C14.692 8.95 9.375 8.775 6.297 9.71a.937.937 0 11-.543-1.794c3.532-1.072 9.404-.865 13.115 1.338a.937.937 0 01-.955 1.613z"/>
     </svg>
@@ -1192,90 +1145,55 @@
 
 // ── SPOTIFY PLAYER ────────────────────────────────────────────
 (function () {
-  const panel     = document.getElementById('spotify-panel');
-  const toggle    = document.getElementById('spotify-toggle');
-  const closeBtn  = document.getElementById('spotify-close');
-  const iframe    = document.getElementById('spotify-iframe');
-  const tracks    = document.querySelectorAll('.spotify-track');
-  let loaded      = false;
+  const panel    = document.getElementById('spotify-panel');
+  const toggle   = document.getElementById('spotify-toggle');
+  const closeBtn = document.getElementById('spotify-close');
+  const iframe   = document.getElementById('spotify-iframe');
 
-  const embedBase = 'https://open.spotify.com/embed/track/';
-  const embedOpts = '?utm_source=generator&theme=0';
-
-  function loadTrack(id) {
-    iframe.src = embedBase + id + embedOpts;
-  }
-
-  function selectTrack(item) {
-    tracks.forEach(t => t.classList.remove('active'));
-    item.classList.add('active');
-    loadTrack(item.dataset.id);
-  }
-
-  function openPanel() {
-    if (!loaded) {
-      // Load the first active track on first open
-      const first = document.querySelector('.spotify-track.active');
-      loadTrack(first.dataset.id);
-      loaded = true;
-    }
-    panel.classList.add('open');
-    toggle.setAttribute('aria-expanded', 'true');
-  }
-
-  function closePanel() {
+  toggle.addEventListener('click', () => {
+    if (!iframe.src) iframe.src = iframe.dataset.src; // load Spotify only on first open
+    const open = panel.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  closeBtn.addEventListener('click', () => {
     panel.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
-  }
-
-  toggle.addEventListener('click', () =>
-    panel.classList.contains('open') ? closePanel() : openPanel()
-  );
-  closeBtn.addEventListener('click', closePanel);
-
-  tracks.forEach(track => {
-    track.addEventListener('click', () => selectTrack(track));
   });
 })();
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
 </script>
 
 <!-- ── THREE.JS HERO SCENE ────────────────────────────────────── -->
 <script type="module">
-import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js';
-import { GLTFLoader }      from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/loaders/GLTFLoader.js';
-import { RoomEnvironment } from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/environments/RoomEnvironment.js';
-
 const canvas    = document.getElementById('saxCanvas');
 const container = canvas.parentElement;
 const loading   = document.getElementById('canvasLoading');
 
 const hideLoading = () => { if (loading) loading.classList.add('hidden'); };
 
-// Failsafe: hide dots after 8 s no matter what
-const failsafe = setTimeout(hideLoading, 8000);
+// ponytail: 3D only on desktop-width screens — phones skip Three.js and the 5 MB model
+if (window.matchMedia('(min-width: 901px)').matches) {
+  // Failsafe: hide dots after 8 s no matter what
+  setTimeout(hideLoading, 8000);
 
-// Run after all CSS/fonts are loaded so layout dimensions are reliable
-window.addEventListener('load', () => {
-  try {
-    init();
-  } catch (err) {
-    console.error('[Three.js] init crashed:', err);
-    clearTimeout(failsafe);
-    hideLoading();
-  }
-});
+  // Run after all CSS/fonts are loaded so layout dimensions are reliable
+  window.addEventListener('load', async () => {
+    try {
+      const THREE = await import('three');
+      const [{ GLTFLoader }, { RoomEnvironment }] = await Promise.all([
+        import('three/addons/loaders/GLTFLoader.js'),
+        import('three/addons/environments/RoomEnvironment.js'),
+      ]);
+      init(THREE, GLTFLoader, RoomEnvironment);
+    } catch (err) {
+      console.error('[Three.js] init crashed:', err);
+      hideLoading();
+    }
+  });
+} else {
+  hideLoading();
+}
 
-function init() {
+function init(THREE, GLTFLoader, RoomEnvironment) {
   // ── RENDERER ────────────────────────────────────────────────
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -1311,12 +1229,6 @@ function init() {
   const rimLight = new THREE.PointLight(0xC9A84C, 6, 14);
   rimLight.position.set(0, 5, -5);
   scene.add(rimLight);
-
-  // ── MATERIAL (fallback / override) ──────────────────────────
-  const metalMat = new THREE.MeshPhysicalMaterial({
-    color: 0xC9A84C, metalness: 1.0, roughness: 0.12,
-    envMapIntensity: 2.0, clearcoat: 0.5, clearcoatRoughness: 0.08,
-  });
 
   let instrument = null;
 
@@ -1395,7 +1307,6 @@ function init() {
 
     if (firstFrame) {
       firstFrame = false;
-      clearTimeout(failsafe);
       hideLoading();
     }
   })();
